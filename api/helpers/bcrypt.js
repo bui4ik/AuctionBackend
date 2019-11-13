@@ -1,0 +1,14 @@
+const bcrypt = require('bcryptjs');
+
+class BcryptHelper {
+  static async createPasswordHash(password) {
+    const salt = await bcrypt.genSalt(10);
+    return await bcrypt.hash(password, salt);
+  }
+
+  static async comparePasswordHash(password, hash) {
+    return await bcrypt.compare(password, hash);
+  }
+}
+
+module.exports = BcryptHelper;
